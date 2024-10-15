@@ -38,6 +38,7 @@ body {
       color: #fff;
       padding: 20px;
       text-align: center;
+      position: relative;
     }
     
     footer a {
@@ -68,4 +69,35 @@ body {
     
     .interval-input label {
       margin-right: 10px;
+    }
+
+    #probabilityCanvas {
+      width: 100%;
+      height: 200px;
+    }
+    
+    @media (max-width: 768px) { /* Для экранов до 768 пикселей */
+      #probabilityCanvas {
+        height: 150px; /* Уменьшаем высоту */
+      }
+    }
+    
+    @media (max-width: 480px) { /* Для экранов до 480 пикселей */
+      #probabilityCanvas {
+        height: 100px; /* Еще больше уменьшаем высоту */
+      }
+    }
+
+    #imageBlock {
+      position: absolute; /* Делаем код-блок позиционированным */
+      bottom: 20px; /* Отступ от нижнего края */
+      right: 20px; /* Отступ от правого края */
+      width: 100px; /* Ширина картинки */
+      height: 100px; /* Высота картинки */
+    }
+
+    #imageBlock img {
+      width: 100%; /* Занимает всю ширину блока */
+      height: 100%; /* Занимает всю высоту блока */
+      object-fit: cover; /* Подгоняет картинку под размеры блока, обрезая лишнее */
     }

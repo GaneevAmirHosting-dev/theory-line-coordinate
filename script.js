@@ -38,8 +38,14 @@ function drawIntervals() {
   const intervals = [];
   for (let i = 0; i < intervalCount; i++) {
     const intervalInput = document.getElementById(`interval-${i}`);
-    const interval = intervalInput.value.split('-').map(Number); // Разделяем начало и конец интервала
-    intervals.push(interval);
+    const interval = intervalInput.value.split(/[- ]/g).map(Number);
+    
+    // Проверка на корректность интервала
+    if (interval[0] < interval[1]) { 
+      intervals.push(interval);
+    } else {
+      console.error(`Неверный интервал для ${i + 1}-го промежутка: ${intervalInput.value}`);
+    }
   }
 
   // Находим минимальное и максимальное значение в интервалах

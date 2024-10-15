@@ -11,6 +11,8 @@
     <h1>Решение задач с помощью координатной прямой</h1>
   </header>
 
+
+
   <main>
     <section class="intro">
       <h2>Введение</h2>
@@ -62,13 +64,30 @@
     </section>
   </main>
 
+
+
   <footer>
     <p>Дополнительные материалы:</p>
     <ul>
-      <li><a href="#">Ссылка на учебник по математике</a></li>
-      <li><a href="#">Ссылка на онлайн-ресурсы по координатной прямой</a></li>
+      <li><a href="#">Ссылка на другие работы: coming soon</a></li>
+      <li><a href="#" id="modalLink">Ссылка на онлайн-ресурсы по координатной прямой</a></li>
     </ul>
+    <div id="imageBlock">
+      <img src="img\QR Code\QR Code.png" alt="QR Code"> </div>
   </footer>
+
+
+
+  <script>
+    const modalLink = document.getElementById('modalLink');
+  
+    modalLink.addEventListener('click', function(event) {
+      event.preventDefault(); // Предотвращаем переход по ссылке
+      alert('Вся информация, представленная здесь, была бережно собрана из множества источников\n\n Вам вряд ли интересны эти источники : )'); 
+    });
+  </script>
+
+
 
   <script src="script.js"></script>
 </body>
