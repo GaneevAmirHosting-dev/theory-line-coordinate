@@ -39,20 +39,18 @@ body {
       padding: 20px;
       text-align: center;
       position: relative;
-      display: flex;
+      
     }
     
-    footer div a {
+    footer a {
       color: #fff;
       text-decoration: none;
     }
     
-    footer div a:hover {
+    footer a:hover {
       text-decoration: underline;
     }
-    .footer_div {
-          display: inline-block;
-    }
+    
     .interactive {
       display: flex;
       flex-direction: column;
@@ -97,7 +95,6 @@ body {
       right: 20px; /* Отступ от правого края */
       width: 100px; /* Ширина картинки */
       height: 100px; /* Высота картинки */
-      display: inline-block;
     }
 
     #imageBlock img {
@@ -106,3 +103,25 @@ body {
       object-fit: cover; /* Подгоняет картинку под размеры блока, обрезая лишнее */
     }
 
+    footer {
+      display: grid;
+      grid-template-columns: 1fr 2fr; /* Разделите футер на две колонки */
+      grid-template-rows: auto; /* Автоматически выравнивайте по высоте */
+      padding: 1rem;
+    }
+    
+    footer .image-container {
+      grid-column: 1; /* Разместите картинку в первой колонке */
+      grid-row: 1; /* Разместите картинку в первой строке */
+      justify-self: center; /* Выровняйте картинку по центру */
+    }
+    
+    footer .text-container {
+      grid-column: 2; /* Разместите текст во второй колонке */
+      grid-row: 1; /* Разместите текст в первой строке */
+      text-align: right; /* Выровняйте текст по правому краю */
+    }
+
+    .imgSection {
+      width: 50%;
+    }

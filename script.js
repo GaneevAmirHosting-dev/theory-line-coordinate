@@ -18,37 +18,35 @@ function createIntervalInputs() {
 function drawIntervals() {
   const canvas = document.getElementById('probabilityCanvas');
   const ctx = canvas.getContext('2d');
-
-  // Очистка canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Отрисовка числовой прямой
-  const leftOffset = canvas.width * 0.12; // Отступ слева
-  const rightOffset = canvas.width * 0.12; // Отступ справа
-  const lineWidth = canvas.width - leftOffset - rightOffset; // Ширина линии
+  const leftOffset = canvas.width * 0.12;
+  const rightOffset = canvas.width * 0.12;
+  const lineWidth = canvas.width - leftOffset - rightOffset;
 
   ctx.beginPath();
-  ctx.moveTo(leftOffset, 50); // Начало линии
-  ctx.lineTo(leftOffset + lineWidth, 50); // Конец линии
+  ctx.moveTo(leftOffset, 50);
+  ctx.lineTo(leftOffset + lineWidth, 50);
   ctx.strokeStyle = 'black';
   ctx.stroke();
 
-  // Получение данных из input-полей
   const intervalCount = parseInt(document.getElementById('intervalCount').value);
   const intervals = [];
   for (let i = 0; i < intervalCount; i++) {
     const intervalInput = document.getElementById(`interval-${i}`);
-    const interval = intervalInput.value.split(/[- ]/g).map(Number);
-    
-    // Проверка на корректность интервала
-    if (interval[0] < interval[1]) { 
+    const interval = intervalInput.value.split(/[- ]/g).map(num => {
+      if (num.trim() === 'бесконечность' || num.trim() === '∞') return Infinity;
+      if (num.trim() === 'минус бесконечность' || num.trim() === '-∞') return -Infinity;
+      return Number(num);
+    });
+
+    if (interval[0] < interval[1] || interval[0] === -Infinity || interval[1] === Infinity) {
       intervals.push(interval);
     } else {
       console.error(`Неверный интервал для ${i + 1}-го промежутка: ${intervalInput.value}`);
     }
   }
 
-  // Находим минимальное и максимальное значение в интервалах
   let minVal = intervals[0][0];
   let maxVal = intervals[0][1];
   for (let i = 1; i < intervalCount; i++) {
@@ -56,8 +54,17 @@ function drawIntervals() {
     maxVal = Math.max(maxVal, intervals[i][1]);
   }
 
-  // Отрисовка отрезков для промежутков
-  const intervalWidth = lineWidth / (maxVal - minVal); // Ширина каждого промежутка
+  const intervalWidth = lineWidth / (maxVal - minVal);
+
+  // Коррекция для бесконечности
+  intervals.forEach((interval, index) => {
+    if (interval[1] === Infinity) {
+      const adjust = (interval[0] * 0.25);
+      interval[1] = interval[0] + adjust;
+    }
+  });
+
+  
   const colors = ['rgba(0, 0, 255, 0.3)', 'rgba(255, 0, 0, 0.3)', 'rgba(0, 255, 0, 0.3)', 'rgba(255, 255, 0, 0.3)', 
                   'rgba(128, 0, 128, 0.3)', 'rgba(255, 165, 0, 0.3)', 'rgba(0, 255, 255, 0.3)', 'rgba(255, 0, 255, 0.3)']; 
 
