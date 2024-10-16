@@ -39,17 +39,20 @@ body {
       padding: 20px;
       text-align: center;
       position: relative;
+      display: flex;
     }
     
-    footer a {
+    footer div a {
       color: #fff;
       text-decoration: none;
     }
     
-    footer a:hover {
+    footer div a:hover {
       text-decoration: underline;
     }
-    
+    .footer_div {
+          display: inline-block;
+    }
     .interactive {
       display: flex;
       flex-direction: column;
@@ -94,6 +97,7 @@ body {
       right: 20px; /* Отступ от правого края */
       width: 100px; /* Ширина картинки */
       height: 100px; /* Высота картинки */
+      display: inline-block;
     }
 
     #imageBlock img {
@@ -101,3 +105,4 @@ body {
       height: 100%; /* Занимает всю высоту блока */
       object-fit: cover; /* Подгоняет картинку под размеры блока, обрезая лишнее */
     }
+
